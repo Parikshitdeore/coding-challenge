@@ -1,0 +1,27 @@
+img {
+  width: 50px;
+}
+.pagination {
+  margin: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.table table {
+  margin: auto;
+}
+
+/*statistics*/
+
+.stats-box {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
