@@ -1,18 +1,14 @@
 import React from "react";
 
-const Statistics = ({ month, statistics }) => {
-  const {
-    totalSale = 0,
-    soldInMonth = 0,
-    notSoldInMonth = 0,
-  } = (statistics = {});
+const Statistics = ({ monthStr, statistics = {} }) => {
+  const { totalSale = 0, soldInMonth = 0, notSoldInMonth = 0 } = statistics;
   return (
     <div className="stats-container">
-      <h2>Statistics - {month}</h2>
+      <h1>Statistics - {monthStr}</h1>
       <div className="stats-box">
         <div className="stats">
           <p>Total sale</p>
-          <p>{Math.round(totalSale)}</p>
+          <p>Rs.{Math.round(totalSale)}/-</p>
         </div>
         <div className="stats">
           <p>Total sold Item</p>

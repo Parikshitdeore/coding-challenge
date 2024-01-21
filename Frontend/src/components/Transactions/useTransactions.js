@@ -8,6 +8,7 @@ const useTransactions = () => {
   const [combinedData, setCombinedData] = useState({});
   const [perPage, setperPage] = useState(2);
   const [page, setPage] = useState(1);
+  const [monthStr, setMonthStr] = useState("March");
 
   const monthsArray = [
     "January",
@@ -64,8 +65,11 @@ const useTransactions = () => {
     combinedData,
     setPage,
     page,
+    perPage,
     setperPage,
     monthsArray,
+    monthStr,
+    setMonthStr,
   };
 };
 

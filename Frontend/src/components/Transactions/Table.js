@@ -7,22 +7,30 @@ const Table = ({
   setPage,
   setperPage,
   page,
+  perPage,
+  setMonthStr,
   monthsArray,
 }) => {
   const { paginatedTransactions = [], totalPages = 0 } = data;
 
   return (
     <div className="table-container">
-      <h3>Transaction Dashboard</h3>
-      <div>
+      <div className="transaction-dashboard">
+        <h1>Transaction Dashboard</h1>
+      </div>
+
+      <div className="filter">
         <input
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
           placeholder="Search Transaction"
         ></input>
         <select
           value={month}
           onChange={(e) => {
             setMonth(e.target.value);
+            setMonthStr(monthsArray[e.target.value - 1]);
           }}
         >
           {monthsArray.map((monthStr, i) => {
@@ -37,7 +45,7 @@ const Table = ({
       <div className="table">
         <table>
           <tbody>
-            <tr>
+            <tr className="table-header">
               <th>Id</th>
               <th>Title</th>
               <th>Description</th>
@@ -52,8 +60,8 @@ const Table = ({
                   <tr key={i}>
                     <td>{id}</td>
                     <td>{title}</td>
-                    <td>description</td>
-                    <td>{Math.round(price)}</td>
+                    <td>{description}</td>
+                    <td>Rs.{Math.round(price)}/-</td>
                     <td>{category}</td>
                     <td>{sold ? "sold" : "unsold"}</td>
                     <td>
@@ -68,27 +76,34 @@ const Table = ({
         <div className="pagination">
           <p>Page No. {page}</p>
           <div>
-            <p
-              style={{ display: page === 1 ? "none" : "inline" }}
+            <button
+              disable={page === 1 ? true : false}
+              style={{ cursor: page === 1 ? "not-allowed" : "pointer" }}
               onClick={() => {
                 setPage((prev) => (prev > 1 ? prev - 1 : prev));
               }}
             >
               prev
-            </p>
-            {page < totalPages && page > 1 ? "-" : ""}
-            <p
-              style={{ display: page === totalPages ? "none" : "inline" }}
+            </button>
+            -
+            <button
+              disable={page === totalPages ? true : false}
+              style={{
+                cursor: page === totalPages ? "not-allowed" : "pointer",
+              }}
               onClick={() => {
                 setPage((prev) => (prev < totalPages ? prev + 1 : prev));
               }}
             >
               Next
-            </p>
+            </button>
           </div>
           <div>
             Per Page:
-            <select onChange={(e) => setperPage(e.target.value)}>
+            <select
+              value={perPage}
+              onChange={(e) => setperPage(e.target.value)}
+            >
               <option>2</option>
               <option>5</option>
               <option>10</option>

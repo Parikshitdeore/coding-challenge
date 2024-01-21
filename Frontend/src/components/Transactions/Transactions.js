@@ -13,19 +13,23 @@ const Transactions = () => {
     month,
     setSearch,
     setPage,
+    perPage,
     setperPage,
     page,
     monthsArray,
+    setMonthStr,
+    monthStr,
     combinedData = {},
   } = useTransactions();
 
   const { statistics, barChart, pieChart } = combinedData;
 
   return (
-    <div>
+    <div className="page-container">
       <Table
         month={month}
         data={data}
+        perPage={perPage}
         setMonth={setMonth}
         setSearch={setSearch}
         setPage={setPage}
@@ -33,10 +37,11 @@ const Transactions = () => {
         page={page}
         monthsArray={monthsArray}
         combinedData={combinedData}
+        setMonthStr={setMonthStr}
       />
-      <Statistics month={month} statistics={statistics} />
-      <Barchart month={month} barChart={barChart} />
-      <Piechart month={month} pieChart={pieChart} />
+      <Statistics monthStr={monthStr} statistics={statistics} />
+      <Barchart monthStr={monthStr} barChart={barChart} />
+      <Piechart monthStr={monthStr} pieChart={pieChart} />
     </div>
   );
 };
