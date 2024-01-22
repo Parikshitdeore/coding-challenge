@@ -36,8 +36,8 @@
   font-size: large;
   font-weight: 600;
   border-radius: 1em;
-  text-align: center;
   background-color: black;
+  padding-left: 1.5em;
   color: white;
   outline: none;
   outline: none;
@@ -150,9 +150,9 @@
   background-color: white;
   border: 3px solid rgba(0, 0, 0, 0.432);
   border-radius: 2em;
+  margin-bottom: 5rem;
 }
-.barchart-container div,
-.piechart-container div {
+.barchart-container div {
   width: 100%;
   margin: auto;
 }

@@ -6,17 +6,14 @@ function Piechart({ monthStr, pieChart = {} }) {
 
   const data = [["Category", "Number of Items"]];
 
-  console.log(pie);
-
   pie.map((obj) => {
     const arr = [obj._id, obj.count];
-    console.log(arr);
     return data.push(arr);
   });
 
   const options = {
     title: `Category and Quantity sold in ${monthStr}`,
-    is3D: true,
+    is3D: false,
   };
 
   return (

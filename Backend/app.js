@@ -176,8 +176,6 @@ app.get("/combinedStatistics", async (req, res) => {
       pieChart: pieChartResponse.data,
     };
 
-    console.log(combinedResult);
-
     res.status(201).json(combinedResult);
   } catch (e) {
     res.status(401).json({ error: e.message });

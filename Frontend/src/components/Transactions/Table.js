@@ -74,10 +74,12 @@ const Table = ({
           </tbody>
         </table>
         <div className="pagination">
-          <p>Page No. {page}</p>
+          <p>
+            Page No. {page}/{totalPages}
+          </p>
           <div>
             <button
-              disable={page === 1 ? true : false}
+              disable={page === 1 ? "true" : "false"}
               style={{ cursor: page === 1 ? "not-allowed" : "pointer" }}
               onClick={() => {
                 setPage((prev) => (prev > 1 ? prev - 1 : prev));
@@ -87,7 +89,7 @@ const Table = ({
             </button>
             -
             <button
-              disable={page === totalPages ? true : false}
+              disable={page === totalPages ? "true" : "false"}
               style={{
                 cursor: page === totalPages ? "not-allowed" : "pointer",
               }}
