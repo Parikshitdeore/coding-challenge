@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import useTransactions from "./useTransactions";
+import useTransactions from "./../../Hooks/useTransactions";
 import Statistics from "./Statistics";
 import Table from "./Table";
 import Barchart from "./Barchart";
