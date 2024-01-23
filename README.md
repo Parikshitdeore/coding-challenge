@@ -18,7 +18,7 @@ This folder contains the backend code for our application. The backend is built 
 - ```/piechart``` : Gives Data for the pie chart for the selected month.
 - ```/combinedStatistics``` : Combines all the data and Gives result for all the above mentioned APIs in a single API call.
 
-## 2. Frontend
+# 2. Frontend
 ## Description
 
 This folder contains the frontend code for our application. The frontend is built using [insert your frontend framework/library here].
