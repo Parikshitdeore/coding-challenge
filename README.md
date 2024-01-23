@@ -1,13 +1,15 @@
-![image](https://github.com/Parikshitdeore/coding-challenge/assets/113280255/c456665a-d63b-46d7-890d-d9da36d21179)# Backend
+<h1 align=center>Coding Challenge</h1>
+
+# 1. Backend
 ## Description
 This folder contains the backend code for our application. The backend is built using node.js.
 
 ## Getting Started
 1. Make sure you have npm installed.
-2. Navigate to the backend folder ```cd Backend ```
+2. Navigate to the backend folder ```cd Backend ```.
 3. Install dependencies: ```npm install```.
-4. Start the backend server and connect to MONGODB: ```npm start```.`
-5. The server will be running at ``` http://localhost:5000 ```
+4. Start the backend server and connect to MONGODB: ```npm start```.
+5. The server will be running at ``` http://localhost:5000 ```.
 
 ## API Endpoints
 - ```/transactions``` : Gives Total pages and transactions in the selected month.
@@ -16,7 +18,7 @@ This folder contains the backend code for our application. The backend is built 
 - ```/piechart``` : Gives Data for the pie chart for the selected month.
 - ```/combinedStatistics``` : Combines all the data and Gives result for all the above mentioned APIs in a single API call.
 
-# Frontend
+## 2. Frontend
 ## Description
 
 This folder contains the frontend code for our application. The frontend is built using [insert your frontend framework/library here].
@@ -24,10 +26,10 @@ This folder contains the frontend code for our application. The frontend is buil
 ## Getting Started
 
 1. Make sure you have npm installed.
-2. Navigate to the backend folder ```cd Frontend ```
+2. Navigate to the backend folder ```cd Frontend ```.
 3. Install dependencies: ```npm install```.
 4. Start the backend server: ```npm start```.`
-5. The server will be running at ``` http://localhost:3000 ```
+5. The server will be running at ``` http://localhost:3000 ```.
 
 ## Project Structure
 - ```/src```: Source code for the frontend.
