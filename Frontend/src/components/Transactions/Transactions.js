@@ -8,7 +8,7 @@ import Piechart from "./Piechart";
 
 const Transactions = () => {
   const {
-    data,
+    searchedData,
     setMonth,
     month,
     setSearch,
@@ -28,7 +28,7 @@ const Transactions = () => {
     <div className="page-container">
       <Table
         month={month}
-        data={data}
+        searchedData={searchedData}
         perPage={perPage}
         setMonth={setMonth}
         setSearch={setSearch}

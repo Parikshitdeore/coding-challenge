@@ -2,13 +2,13 @@ import React from "react";
 import { Chart } from "react-google-charts";
 
 function Piechart({ monthStr, pieChart = {} }) {
-  const { pie = [] } = pieChart;
+  const { data = [] } = pieChart;
 
-  const data = [["Category", "Number of Items"]];
+  const pie = [["Category", "Number of Items"]];
 
-  pie.map((obj) => {
+  data.map((obj) => {
     const arr = [obj._id, obj.count];
-    return data.push(arr);
+    return pie.push(arr);
   });
 
   const options = {
@@ -22,7 +22,7 @@ function Piechart({ monthStr, pieChart = {} }) {
       <div className="chart">
         <Chart
           chartType="PieChart"
-          data={data}
+          data={pie}
           options={options}
           width="100%"
           height="500px"

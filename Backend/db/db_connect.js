@@ -1,19 +1,17 @@
 require("dotenv").config();
-
 const fetchData = require("./fetchData");
 const mongoose = require("mongoose");
 const Transaction = require("../models/transaction");
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env["MONGODB_URI"];
 
 const initializeDatabase = async () => {
   try {
-    mongoose.connect(mongoURI);
-    const db = mongoose.connection;
+    console.log(mongoURI);
+    const db = await mongoose.connect(mongoURI);
     if (db) {
-      db.on("error", console.error.bind(console, "MongoDB connection error:"));
-      db.once("open", () => {
-        console.log("Connected to MongoDB");
-      });
+      console.log(`Connected to MongoDB`);
+    } else {
+      console.log(`Failed to connect to MongoDB`);
     }
     //Feeding data to MongoDB
     // const transactions = await fetchData();

@@ -1,7 +1,8 @@
 import React from "react";
 
 const Statistics = ({ monthStr, statistics = {} }) => {
-  const { totalSale = 0, soldInMonth = 0, notSoldInMonth = 0 } = statistics;
+  const { data = {} } = statistics;
+  const { totalSale = 0, soldInMonth = 0, notSoldInMonth = 0 } = data;
   return (
     <div className="stats-container">
       <h1>Statistics - {monthStr}</h1>

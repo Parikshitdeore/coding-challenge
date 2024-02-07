@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require(`cors`);
 const app = express();
+const axios = require("axios");
 const initializeDatabase = require("./db/db_connect");
 const Transaction = require("./models/transaction");
-const { default: axios } = require("axios");
 
 app.use(express.json());
 
@@ -12,11 +12,11 @@ app.use(cors());
 initializeDatabase();
 
 app.get("/", (req, res) => {
-  res.send("Hello, Node.js!");
+  res.send("Hello, This is coding challenge Backend");
 });
 
 app.listen(5000, () => {
-  console.log(`Server is running`);
+  console.log(`Server is listening on port`, 5000);
 });
 
 app.get(`/transactions`, async (req, res) => {
@@ -50,7 +50,7 @@ app.get(`/transactions`, async (req, res) => {
       (page - 1) * perPage,
       page * perPage
     );
-    res.status(201).json({ paginatedTransactions, totalPages });
+    res.status(201).json({ data: { paginatedTransactions, totalPages } });
   } catch (e) {
     res.status(401).json({ error: e.message });
   }
@@ -78,7 +78,7 @@ app.get(`/statistics`, async (req, res) => {
       return (acc = curr.sold ? acc : acc + 1);
     }, 0);
 
-    res.status(201).json({ totalSale, soldInMonth, notSoldInMonth });
+    res.status(201).json({ data: { totalSale, soldInMonth, notSoldInMonth } });
   } catch (e) {
     res.status(401).json({ error: e.message });
   }
@@ -104,13 +104,22 @@ app.get(`/barchart`, async (req, res) => {
       { min: 901, max: Number.MAX_SAFE_INTEGER },
     ];
 
-    for (const range of priceRanges) {
-      const count = await Transaction.countDocuments({
-        $expr: {
+    // for (const range of priceRanges) {
+    //   const count = await Transaction.countDocuments({
+    //     $expr: {
+    //       $eq: [{ $month: "$dateOfSale" }, parseInt(month)],
+    //     },
+    //     price: { $gte: range.min, $lte: range.max },
+    //   });
+
+      priceRanges.map((range)=>{
+        const count = await Transaction.countDocuments({
+           $expr: {
           $eq: [{ $month: "$dateOfSale" }, parseInt(month)],
-        },
-        price: { $gte: range.min, $lte: range.max },
-      });
+          },
+           price: { $gte: range.min, $lte: range.max },
+        });
+      })
 
       sortedRange.push([
         `${range.min}-${
@@ -120,7 +129,7 @@ app.get(`/barchart`, async (req, res) => {
       ]);
     }
 
-    res.status(201).json(sortedRange);
+    res.status(201).json({ data: sortedRange });
   } catch (e) {
     res.status(401).json({ error: e.message });
   }
@@ -143,7 +152,7 @@ app.get(`/piechart`, async (req, res) => {
       },
     ]);
 
-    res.status(201).json({ pie });
+    res.status(201).json({ data: pie });
   } catch (e) {
     res.status(401).json({ error: e.message });
   }

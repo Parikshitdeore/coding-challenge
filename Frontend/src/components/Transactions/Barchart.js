@@ -1,8 +1,9 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 
-function Barchart({ monthStr, barChart = [] }) {
-  const data = [["Price Range", "Count"], ...barChart];
+function Barchart({ monthStr, barChart = {} }) {
+  const { data = [] } = barChart;
+  const bar = [["Price Range", "Count"], ...data];
 
   const options = {
     chart: {
@@ -18,7 +19,7 @@ function Barchart({ monthStr, barChart = [] }) {
           chartType="Bar"
           width="100%"
           height="500px"
-          data={data}
+          data={bar}
           options={options}
         />
       </div>

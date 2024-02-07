@@ -4,7 +4,7 @@ import axios from "axios";
 const useTransactions = () => {
   const [month, setMonth] = useState(3);
   const [search, setSearch] = useState("");
-  const [data, setData] = useState([]);
+  const [searchedData, setSearchedData] = useState([]);
   const [combinedData, setCombinedData] = useState({});
   const [perPage, setperPage] = useState(2);
   const [page, setPage] = useState(1);
@@ -39,7 +39,7 @@ const useTransactions = () => {
       const res = await axios.get(
         `http://localhost:5000/transactions?month=${month}&search=${search}&perPage=${perPage}&page=${page}`
       );
-      setData(res.data);
+      setSearchedData(res.data);
     } catch (e) {
       console.log(e);
     }
@@ -61,7 +61,7 @@ const useTransactions = () => {
     setMonth,
     search,
     setSearch,
-    data,
+    searchedData,
     combinedData,
     setPage,
     page,

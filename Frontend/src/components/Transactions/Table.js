@@ -1,7 +1,7 @@
 import React from "react";
 const Table = ({
   month,
-  data,
+  searchedData,
   setMonth,
   setSearch,
   setPage,
@@ -11,6 +11,7 @@ const Table = ({
   setMonthStr,
   monthsArray,
 }) => {
+  const { data = {} } = searchedData;
   const { paginatedTransactions = [], totalPages = 0 } = data;
 
   return (
