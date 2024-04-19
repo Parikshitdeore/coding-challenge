@@ -104,22 +104,22 @@ app.get(`/barchart`, async (req, res) => {
       { min: 901, max: Number.MAX_SAFE_INTEGER },
     ];
 
-    // for (const range of priceRanges) {
-    //   const count = await Transaction.countDocuments({
-    //     $expr: {
-    //       $eq: [{ $month: "$dateOfSale" }, parseInt(month)],
-    //     },
-    //     price: { $gte: range.min, $lte: range.max },
-    //   });
-
-      priceRanges.map((range)=>{
-        const count = await Transaction.countDocuments({
-           $expr: {
+    for (const range of priceRanges) {
+      const count = await Transaction.countDocuments({
+        $expr: {
           $eq: [{ $month: "$dateOfSale" }, parseInt(month)],
-          },
-           price: { $gte: range.min, $lte: range.max },
-        });
-      })
+        },
+        price: { $gte: range.min, $lte: range.max },
+      });
+
+      // priceRanges.map((range)=>{
+      //   const count = await Transaction.countDocuments({
+      //      $expr: {
+      //     $eq: [{ $month: "$dateOfSale" }, parseInt(month)],
+      //     },
+      //      price: { $gte: range.min, $lte: range.max },
+      //   });
+      // })
 
       sortedRange.push([
         `${range.min}-${
