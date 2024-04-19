@@ -162,27 +162,43 @@ app.get("/combinedStatistics", async (req, res) => {
   try {
     const { page = 1, perPage = 10, month = 3, search = "" } = req.query;
 
-    const transactionResponse = await axios.get(
-      `http://localhost:5000/transactions?month=${month}&page=${page}&search=${search}&perPage=${perPage}`
-    );
+    const transactionApi = async () => {
+      const transactionResponse = await axios.get(
+        `http://localhost:5000/transactions?month=${month}&page=${page}&search=${search}&perPage=${perPage}`
+      );
+      return transactionResponse.data;
+    };
+    const statisticsApi = async () => {
+      const statisticsResponse = await axios.get(
+        `http://localhost:5000/statistics?month=${month}`
+      );
+      return statisticsApi.data;
+    };
+    const barChartApi = async () => {
+      const barchartResponse = await axios.get(
+        `http://localhost:5000/barchart?month=${month}`
+      );
+      return barchartResponse.data;
+    };
+    const pieChartApi = async () => {
+      const pieChartResponse = await axios.get(
+        `http://localhost:5000/piechart?month=${month}`
+      );
+      return pieChartResponse.data;
+    };
 
-    const statisticsResponse = await axios.get(
-      `http://localhost:5000/statistics?month=${month}`
-    );
-
-    const barchartResponse = await axios.get(
-      `http://localhost:5000/barchart?month=${month}`
-    );
-
-    const pieChartResponse = await axios.get(
-      `http://localhost:5000/piechart?month=${month}`
-    );
+    const [transactions, statistics, barChart, pieChart] = await Promise.all([
+      transactionApi(),
+      statisticsApi(),
+      barChartApi(),
+      pieChartApi(),
+    ]);
 
     const combinedResult = {
-      transactions: transactionResponse.data,
-      statistics: statisticsResponse.data,
-      barChart: barchartResponse.data,
-      pieChart: pieChartResponse.data,
+      transactions: transactions,
+      statistics: statistics,
+      barChart: barChart,
+      pieChart: pieChart,
     };
 
     res.status(201).json(combinedResult);
