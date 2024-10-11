@@ -172,7 +172,7 @@ app.get("/combinedStatistics", async (req, res) => {
       const statisticsResponse = await axios.get(
         `http://localhost:5000/statistics?month=${month}`
       );
-      return statisticsApi.data;
+      return statisticsResponse.data;
     };
     const barChartApi = async () => {
       const barchartResponse = await axios.get(
